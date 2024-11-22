@@ -12,7 +12,7 @@ import { TodoService } from '../../core/services/todo.service';
   template: `
     <app-toolbar [isRegisterBtnShown]="true"></app-toolbar>
     <form class="form-container" [formGroup]="loginForm">
-      <h2 class="title">Connectez-vous</h2>
+      <h2 class="title">Connectez-vous Rikudo</h2>
       <h3 class="sub-title"> Veuillez entrer votre email
         <a routerLink="/register">S'inscrire</a>
       </h3><br>
