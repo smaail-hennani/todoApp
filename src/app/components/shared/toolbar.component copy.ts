@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { TodoService } from '../../core/services/todo.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -13,55 +14,57 @@ import { RouterModule } from '@angular/router';
       <button class="toolbar-btn" routerLink="/login" *ngIf="isLoginBtnShown">Se connecter</button>
       <div class="avatar-logout-btn" *ngIf="isLogoutBtnShown">
         <div class="user-avatar">
+          <!-- {{ (users | async)![0].email[0] }} -->
           {{ firstEmailLetter![0] | uppercase }}
         </div>
         <button class="toolbar-btn" routerLink="/login" (click)="logout()">Se déconnecter</button>
       </div>
+
+ <!-- <button class="toolbar-btn" routerLink="/todos" *ngIf="isLoginBtnShown">Se connecter</button>
+      <button class="toolbar-btn" routerLink="/register" *ngIf="isRegisterBtnShown">S'inscrire</button>
+      <button class="toolbar-btn" routerLink="/login" *ngIf="isLogoutBtnShown">Se déconnecter</button> -->
     </nav>
   `,
-  styles: [`
+  styles:
+  `
     .toolbar {
       height: 4rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: linear-gradient(90deg, #1e3c72, #2a5298); /* Dégradé bleu */
-      padding: 0 20px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      position: sticky; /* Pour que la barre ne défile pas */
+      border-bottom: 0.1px #2828281a solid;
+      position: sticky; // Pour que la barre ne scrool pas
       top: 0;
     }
 
     .app-title {
       text-decoration: none;
-      color: #ffffff;
-      font-size: 1.5rem;
+      color: inherit;
+      font-size: 1.4rem;
       font-weight: bold;
     }
 
     .toolbar-btn {
       padding: 0.5rem 1rem;
       border-radius: 8px;
-      background: #e74c3c; /* Rouge */
+      background: #252525;
       color: white;
       font-size: 1.1em;
-      border: none;
-      transition: background-color 250ms, transform 250ms;
-    }
+      transition: transform 250ms;
 
-    .toolbar-btn:hover {
-      cursor: pointer;
-      background-color: #c0392b; /* Rouge foncé */
-      transform: scale(1.05);
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+      }
     }
 
     .avatar-logout-btn {
       display: flex;
       align-items: center;
-    }
 
-    .avatar-logout-btn > * {
-      margin-left: 1rem;
+      & > * {
+        margin-left: 1rem;
+      }
     }
 
     .user-avatar {
@@ -71,18 +74,18 @@ import { RouterModule } from '@angular/router';
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #f1c40f; /* Jaune */
-      color: #2c3e50; /* Bleu foncé */
+      background: lightpink;
       font-size: 1.3em;
       font-weight: bolder;
     }
-  `]
+  `
 })
 export class ToolbarComponent {
   @Input() isLoginBtnShown!: boolean;
   @Input() isRegisterBtnShown!: boolean;
   @Input() isLogoutBtnShown!: boolean;
 
+  // readonly users = inject(TodoService).getUsers();
   firstEmailLetter = localStorage.getItem('email');
   logout = () => localStorage.removeItem('email');
 }
