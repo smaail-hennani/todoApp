@@ -23,15 +23,38 @@ import { Todo } from '../../core/models/todo.model';
     </form>
   `,
   styles: `
+
     .form-container{
+      width: max-content;
+      border-radius: 8px;
+      margin: 2rem auto;
       display: flex;
       padding: 0;
       border: none;
+      box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
 
       & > * {
         margin: 0 0.5rem;
       }
     }
+
+    input[type="text"] {
+    width: auto; /* La largeur s'adapte au contenu */
+    // min-width: 20ch; /* Largeur minimale pour une bonne lisibilité */
+    // max-width: 100%; /* Empêche un débordement */
+    }
+
+    .auth-btn {
+    width: 100%; /* Largeur du bouton */
+    padding: 14px 20px;
+    border-radius: 8px;
+  }
+
+
+
+
+
+
   `
 })
 export class AddTodoComponent {

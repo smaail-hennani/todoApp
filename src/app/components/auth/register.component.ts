@@ -16,14 +16,15 @@ import { User } from '../../core/models/user.model';
       <h2 class="title">Enregistrez-vous</h2>
       <h3 class="sub-title">
         Veuillez entrer votre email et mot de passe
-      <a routerLink="/login">Se connecter</a>
+        <br>
+        <a routerLink="/login">Se connecter</a>
       </h3>
       <br />
       <input placeholder="Email" type="email" formControlName="email" />
       <input placeholder="Mot de passe" type="password" formControlName="password" />
       <button
         [ngClass]="{ 'active-btn' : !registerForm.invalid }"
-        class=" auth-btn"
+        class="auth-btn"
         [disabled]="registerForm.invalid"
         (click)="OnSubmit()"
       >
@@ -31,7 +32,8 @@ import { User } from '../../core/models/user.model';
       </button>
     </form>
   `,
-  styles: ``
+  styles: `
+  `
 })
 export default class RegisterComponent {
   private ts = inject(TodoService);
