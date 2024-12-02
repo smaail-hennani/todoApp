@@ -1,35 +1,58 @@
 import { Injectable, inject } from '@angular/core';
-import { AngularTodoDB } from './db';
+import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user.model';
 import { Router } from '@angular/router';
 import { Todo } from '../models/todo.model';
-import { liveQuery } from 'dexie';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
-  // constructor() {}
-  db = new AngularTodoDB();
+  private apiUrl = 'https://api.example.com'; // Remplacez par l'URL de votre API
+  private http = inject(HttpClient);
   private router = inject(Router);
 
-  // Opératipns sur l'authentification de l'utilisateur
-  loggIn = (email: string) => this.db.users.get(email);
-  newUser = (user: User) => this.db.users.add(user);
-  getUsers = () => this.db.users.toArray();
-  isLoggedIn = () => {
+  // Authentification utilisateur
+  loggIn(email: string): Observable<User> {
+    return this.http.get<User>(`${this.apiUrl}/users/${email}`);
+  }
+
+  newUser(user: User): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/users`, user);
+  }
+
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.apiUrl}/users`);
+  }
+
+  isLoggedIn(): boolean {
     if (localStorage.getItem('email')) {
       return true;
     } else {
       this.router.navigate(['login']);
       return false;
     }
-  };
+  }
 
-    // CRUD todos
-    newTodo = (todo: Todo) => this.db.todos.add(todo);
-    getTodos = () => liveQuery(()=> this.db.todos.toArray());
-    updateTodo = (todo: Todo) => this.db.todos.update(todo.id!, todo);
-    deleteTodo = (todo: Todo) => this.db.todos.delete(todo.id!);
-    getTodosByUser = (email: string) => liveQuery(() => this.db.todos.where('userEmail').equals(email).toArray());
+  // CRUD Todos
+  newTodo(todo: Todo): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/todos`, todo);
+  }
+
+  getTodos(): Observable<Todo[]> {
+    return this.http.get<Todo[]>(`${this.apiUrl}/todos`);
+  }
+
+  updateTodo(todo: Todo): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/todos/${todo.id}`, todo);
+  }
+
+  deleteTodo(todo: Todo): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/todos/${todo.id}`);
+  }
+
+  getTodosByUser(email: string): Observable<Todo[]> {
+    return this.http.get<Todo[]>(`${this.apiUrl}/todos`, { params: { userEmail: email } });
+  }
 }
