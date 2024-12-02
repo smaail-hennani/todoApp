@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TodoService {
-  private apiUrl = 'https://api.example.com'; // Remplacez par l'URL de votre API
+  private apiUrl = 'https://backend.osc-fr1.scalingo.io/'; // Remplacez par l'URL de votre API
   private http = inject(HttpClient);
   private router = inject(Router);
 
