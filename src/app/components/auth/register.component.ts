@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { TodoService } from '../../core/services/todo.service';
 import { User } from '../../core/models/user.model';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, ToolbarComponent, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, ToolbarComponent, ReactiveFormsModule, RouterModule, HttpClientModule],
   template: `
     <app-toolbar [isLoginBtnShown]="true"></app-toolbar>
     <form [formGroup]="registerForm" class="form-container">

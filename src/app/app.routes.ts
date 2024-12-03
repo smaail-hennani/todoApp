@@ -1,5 +1,6 @@
 import { inject } from '@angular/core';
 import { Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 import { TodoService } from './core/services/todo.service';
 
 export const routes: Routes = [

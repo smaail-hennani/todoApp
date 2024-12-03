@@ -4,11 +4,12 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TodoService } from '../../core/services/todo.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ToolbarComponent, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, ToolbarComponent, ReactiveFormsModule, RouterModule, HttpClientModule],
   template: `
     <app-toolbar [isRegisterBtnShown]="true" [isLoginBtnShown]="false" [isLogoutBtnShown]="false"></app-toolbar>
     <form class="form-container" [formGroup]="loginForm">
@@ -46,12 +47,18 @@ export default class LoginComponent {
   async onSubmit() {
     const email = this.loginForm.value.email!;
     const password = this.loginForm.value.password!;
-    const user = await this.ts.loggIn(email);
-    if (user?.email === email && user.password === password) {
-      localStorage.setItem('email', email);
-      this.router.navigateByUrl('/todos');
-    } else {
-      this.showError = true;
-    }
+    this.ts.loggIn(email).subscribe({
+      next: (user) => {
+        if (user?.email === email && user.password === password) {
+          localStorage.setItem('email', email);
+          this.router.navigateByUrl('/todos');
+        } else {
+          this.showError = true;
+        }
+      },
+      error: () => {
+        this.showError = true;
+      }
+    });
   }
 }

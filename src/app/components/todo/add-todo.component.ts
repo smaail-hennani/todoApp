@@ -3,11 +3,12 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TodoService } from '../../core/services/todo.service';
 import { Todo } from '../../core/models/todo.model';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-todo',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
   template: `
     <form class="form-container" [formGroup]="addTodoForm">
       <input type="text" placeholder="Titre" formControlName="title">
@@ -73,7 +74,22 @@ export class AddTodoComponent {
       userEmail: localStorage.getItem('email')!
     };
 
-    this.ts.newTodo(todo);
-    this.addTodoForm.reset();
+    this.ts.newTodo(todo).subscribe({
+      next: (response) => {
+        console.log('Todo ajouté avec succès:', todo);
+        const newTodo: Todo = {
+          ...todo,
+          id: response.todoId // Ajout de l'id retourné par le backend
+        } as Todo;
+        console.log('Id newtodo : ', newTodo.id);
+        this.ts.addLocal(newTodo); // Ajouter localement le todo
+        this.ts.todos$.subscribe({
+          next : todo => console.log("addlocal : ", newTodo),
+        })
+        this.addTodoForm.reset();
+      },
+      error: (err) => console.error('Erreur lors de l\'ajout du todo:', err),
+    });
+    // this.addTodoForm.reset();
   }
 }
