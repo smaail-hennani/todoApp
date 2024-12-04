@@ -50,7 +50,20 @@ export default class RegisterComponent {
       password: this.registerForm.value.password!
     }
     localStorage.setItem('email', user.email);
-    await this.ts.newUser(user);
+    // await this.ts.newUser(user);
+    this.ts.newUser(user).subscribe({
+      next: (response) => {
+        console.log('User ajouté avec succès:', user);
+        /*
+        const newTodo: Todo = {
+          ...todo,
+          id: response.todoId // Ajout de l'id retourné par le backend
+        } as Todo;
+        */
+        console.log('Message : ', response.message);
+        console.log('UserId : ', response.userId);
+      }
+    })
     this.router.navigateByUrl('/todos');
 
   }

@@ -22,8 +22,9 @@ export class TodoService {
     return this.http.get<User>(`${this.apiUrl}/login/${email}`);
   }
 
-  newUser(user: User): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/users`, user);
+  newUser(user: User): Observable<{ message: string, userId: string }> {
+    console.log('NewUser : ', user);
+    return this.http.post<{ message: string, userId: string }>(`${this.apiUrl}/users`, user);
   }
 
   getUsers(): Observable<User[]> {
@@ -31,7 +32,7 @@ export class TodoService {
   }
 
   isLoggedIn(): boolean {
-    if (localStorage.getItem('email')) {
+    if (typeof localStorage !== 'undefined' && localStorage.getItem('email')) {
       return true;
     } else {
       this.router.navigate(['login']);
