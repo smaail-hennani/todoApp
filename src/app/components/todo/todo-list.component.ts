@@ -2,14 +2,18 @@ import { Component, inject, OnInit } from '@angular/core';
 import { TodoService } from '../../core/services/todo.service';
 import { CommonModule } from '@angular/common';
 import { Todo } from '../../core/models/todo.model';
-import { HttpClientModule } from '@angular/common/http';
+import {} from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-todo-list',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, 
+// TODO: `HttpClientModule` should not be imported into a component directly.
+// Please refactor the code to add `provideHttpClient()` call to the provider list in the
+// application bootstrap logic and remove the `HttpClientModule` import from this component.
+HttpClientModule],
   template: `
     <!-- <div *ngFor="let user of users$ | async" class="user-todo-list">
       <h3>{{ user.email }}</h3> -->

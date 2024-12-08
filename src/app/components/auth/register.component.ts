@@ -5,12 +5,16 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { TodoService } from '../../core/services/todo.service';
 import { User } from '../../core/models/user.model';
-import { HttpClientModule } from '@angular/common/http';
+import {} from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, ToolbarComponent, ReactiveFormsModule, RouterModule, HttpClientModule],
+  imports: [CommonModule, ToolbarComponent, ReactiveFormsModule, RouterModule, 
+// TODO: `HttpClientModule` should not be imported into a component directly.
+// Please refactor the code to add `provideHttpClient()` call to the provider list in the
+// application bootstrap logic and remove the `HttpClientModule` import from this component.
+HttpClientModule],
   template: `
     <app-toolbar [isLoginBtnShown]="true"></app-toolbar>
     <form [formGroup]="registerForm" class="form-container">
