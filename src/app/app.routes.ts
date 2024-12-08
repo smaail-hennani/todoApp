@@ -2,6 +2,7 @@ import { inject } from '@angular/core';
 import { Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { TodoService } from './core/services/todo.service';
+import { AuthService } from '/Users/Nano/Desktop/AngularProject/todoApp/src/app/core/services/auth.service';
 
 export const routes: Routes = [
   {
@@ -17,7 +18,8 @@ export const routes: Routes = [
   {
     path: 'todos',
     title: 'Todos | TodoApp',
-    canActivate: [()=> inject(TodoService).isLoggedIn()],
+    // canActivate: [()=> inject(TodoService).isLoggedIn()],
+    canActivate: [()=> inject(AuthService).isAuthenticated()],
     loadComponent: () => import('./components/todo/todo.component'),
   },
   {

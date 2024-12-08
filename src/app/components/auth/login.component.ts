@@ -50,7 +50,7 @@ export default class LoginComponent {
     this.ts.loggIn(email).subscribe({
       next: (user) => {
         if (user?.email === email && user.password === password) {
-          localStorage.setItem('email', email);
+          // localStorage.setItem('email', email);
           this.router.navigateByUrl('/todos');
         } else {
           this.showError = true;

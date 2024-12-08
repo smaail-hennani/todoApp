@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { ThemeService } from '../../core/services/theme.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -9,6 +10,9 @@ import { RouterModule } from '@angular/router';
   template: `
     <nav class="toolbar">
       <a class="app-title" routerLink='/'>TodoApp</a>
+      <button (click)='toggleTheme()' class='theme-toggle'>
+        <span class="icon">🌙</span>
+      </button>
       <button class="toolbar-btn" routerLink="/register" *ngIf="isRegisterBtnShown">S'inscrire</button>
       <button class="toolbar-btn" routerLink="/login" *ngIf="isLoginBtnShown">Se connecter</button>
       <div class="avatar-logout-btn" *ngIf="isLogoutBtnShown">
@@ -20,6 +24,43 @@ import { RouterModule } from '@angular/router';
     </nav>
   `,
   styles: [`
+  .theme-toggle {
+    position: fixed;
+    top: 80px;
+    left: 10px;
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out; /* Animation fluide */
+    z-index: 1000; /* Toujours visible */
+    &:hover{
+      transform: scale(1.1); /* Agrandissement au survol */
+    }
+
+    &:active {
+      transform: scale(0.9); /* Réduction subtile au clic */
+    }
+}
+
+.theme-toggle .icon {
+  animation: rotate 0.5s ease-in-out; /* Ajout d'une rotation au clic */
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+body.dark-theme .theme-toggle {
+  background: linear-gradient(135deg, #333, #555); /* Dégradé sombre */
+  color: #ffd700; /* Icône dorée en mode sombre */
+}
+// =======
     .toolbar {
       height: 4rem;
       display: flex;
@@ -85,4 +126,10 @@ export class ToolbarComponent {
 
   firstEmailLetter = localStorage.getItem('email');
   logout = () => localStorage.removeItem('email');
+
+  constructor(private themeService: ThemeService) {}
+
+  toggleTheme(): void {
+    this.themeService.toggleDarkTheme();
+  }
 }

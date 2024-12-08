@@ -4,6 +4,8 @@ import { User } from '../models/user.model';
 import { Router } from '@angular/router';
 import { Todo } from '../models/todo.model';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { AuthService} from '/Users/Nano/Desktop/AngularProject/todoApp/src/app/core/services/auth.service'
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +14,20 @@ export class TodoService {
   private apiUrl = 'https://backend.osc-fr1.scalingo.io'; // Remplacez par l'URL de votre API
   private http = inject(HttpClient);
   private router = inject(Router);
+  private authService = inject(AuthService);
   private todoSubject = new BehaviorSubject<Todo[]>([]); // Contient la liste des todos
   todos$ = this.todoSubject.asObservable(); // Observable pour accéder aux todos (encapsulation)
-
+  private jwtHelper = new JwtHelperService();
   // Charger les todos depuis le backend
 
   // Authentification utilisateur
   loggIn(email: string): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/login/${email}`);
+  }
+
+  isAuthenticated(): boolean {
+    const token = localStorage.getItem('token');
+    return token ? !this.jwtHelper.isTokenExpired(token): false;
   }
 
   newUser(user: User): Observable<{ message: string, userId: string }> {

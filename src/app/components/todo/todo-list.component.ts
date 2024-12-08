@@ -47,6 +47,7 @@ import { BehaviorSubject, combineLatest } from 'rxjs';
       border-radius: 8px;
       border: 1px #2828281a solid;
       padding: 1rem;
+      background-color: var(--bg-task);
     }
 
     .todo-content{
