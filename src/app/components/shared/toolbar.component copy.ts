@@ -84,6 +84,7 @@ export class ToolbarComponent {
   @Input() isLoginBtnShown!: boolean;
   @Input() isRegisterBtnShown!: boolean;
   @Input() isLogoutBtnShown!: boolean;
+  inject(authService);
 
   // readonly users = inject(TodoService).getUsers();
   firstEmailLetter = localStorage.getItem('email');

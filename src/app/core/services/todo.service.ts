@@ -21,8 +21,9 @@ export class TodoService {
   // Charger les todos depuis le backend
 
   // Authentification utilisateur
-  loggIn(email: string): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}/login/${email}`);
+  loggIn(email: string, password: string): Observable<{token: string}> {
+    const body = { email, password };
+    return this.http.post<{token: string}>(`${this.apiUrl}/login`, body);
   }
 
   isAuthenticated(): boolean {
@@ -75,6 +76,7 @@ export class TodoService {
   }
 
   loadTodos(email: string): void {
+    console.log('Token JWT:', localStorage.getItem('token'));
     this.http.get<Todo[]>(`${this.apiUrl}/todos`, { params: { userEmail: email } }).subscribe({
       next: (todos) => this.todoSubject.next(todos),
       error : (err) => console.error('Erreur lors du chargement des todos'),

@@ -9,11 +9,7 @@ import { BehaviorSubject, combineLatest } from 'rxjs';
 @Component({
   selector: 'app-todo-list',
   standalone: true,
-  imports: [CommonModule, 
-// TODO: `HttpClientModule` should not be imported into a component directly.
-// Please refactor the code to add `provideHttpClient()` call to the provider list in the
-// application bootstrap logic and remove the `HttpClientModule` import from this component.
-HttpClientModule],
+  imports: [CommonModule],
   template: `
     <!-- <div *ngFor="let user of users$ | async" class="user-todo-list">
       <h3>{{ user.email }}</h3> -->

@@ -6,6 +6,7 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
 
   // Si un token existe, ajouter le header Authorization à la requête
   if (token) {
+    console.log('Token ajouté à la requête :', token); // Vérification du token
     const clonedReq = req.clone({
       setHeaders: {
         Authorization: `Bearer ${token}`,

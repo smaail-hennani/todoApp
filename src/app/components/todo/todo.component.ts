@@ -9,11 +9,14 @@ import {} from '@angular/common/http';
 @Component({
   selector: 'app-todo',
   standalone: true,
-  imports: [CommonModule, ToolbarComponent, AddTodoComponent, TodoListComponent, 
+  imports: [CommonModule, ToolbarComponent, AddTodoComponent, TodoListComponent,
+    /*
 // TODO: `HttpClientModule` should not be imported into a component directly.
 // Please refactor the code to add `provideHttpClient()` call to the provider list in the
 // application bootstrap logic and remove the `HttpClientModule` import from this component.
-HttpClientModule],
+HttpClientModule
+  */
+ ],
   template: `
     <app-toolbar [isLogoutBtnShown]="true"></app-toolbar>
     <app-add-todo></app-add-todo>

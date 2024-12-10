@@ -3,16 +3,12 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TodoService } from '../../core/services/todo.service';
 import { Todo } from '../../core/models/todo.model';
-import {} from '@angular/common/http';
+// import {} from '@angular/common/http';
 
 @Component({
   selector: 'app-add-todo',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, 
-// TODO: `HttpClientModule` should not be imported into a component directly.
-// Please refactor the code to add `provideHttpClient()` call to the provider list in the
-// application bootstrap logic and remove the `HttpClientModule` import from this component.
-HttpClientModule],
+  imports: [ReactiveFormsModule, CommonModule],
   template: `
     <form class="form-container" [formGroup]="addTodoForm">
       <input type="text" placeholder="Titre" formControlName="title">

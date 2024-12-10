@@ -9,11 +9,9 @@ import {} from '@angular/common/http';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ToolbarComponent, ReactiveFormsModule, RouterModule, 
-// TODO: `HttpClientModule` should not be imported into a component directly.
-// Please refactor the code to add `provideHttpClient()` call to the provider list in the
-// application bootstrap logic and remove the `HttpClientModule` import from this component.
-HttpClientModule],
+  imports: [CommonModule,
+    ToolbarComponent,
+    ReactiveFormsModule, RouterModule],
   template: `
     <app-toolbar [isRegisterBtnShown]="true" [isLoginBtnShown]="false" [isLogoutBtnShown]="false"></app-toolbar>
     <form class="form-container" [formGroup]="loginForm">
@@ -51,10 +49,14 @@ export default class LoginComponent {
   async onSubmit() {
     const email = this.loginForm.value.email!;
     const password = this.loginForm.value.password!;
-    this.ts.loggIn(email).subscribe({
-      next: (user) => {
-        if (user?.email === email && user.password === password) {
-          // localStorage.setItem('email', email);
+    this.ts.loggIn(email, password).subscribe({
+      //next: (user) => {
+      next: (response) => {
+        // if (user?.email === email && user.password === password) {
+        const token = response.token; //
+        if (token) {
+          localStorage.setItem('token', token);
+          localStorage.setItem('email', email);
           this.router.navigateByUrl('/todos');
         } else {
           this.showError = true;

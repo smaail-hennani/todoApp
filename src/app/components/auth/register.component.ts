@@ -6,15 +6,12 @@ import { Router, RouterModule } from '@angular/router';
 import { TodoService } from '../../core/services/todo.service';
 import { User } from '../../core/models/user.model';
 import {} from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, ToolbarComponent, ReactiveFormsModule, RouterModule, 
-// TODO: `HttpClientModule` should not be imported into a component directly.
-// Please refactor the code to add `provideHttpClient()` call to the provider list in the
-// application bootstrap logic and remove the `HttpClientModule` import from this component.
-HttpClientModule],
+  imports: [CommonModule, ToolbarComponent, ReactiveFormsModule, RouterModule],
   template: `
     <app-toolbar [isLoginBtnShown]="true"></app-toolbar>
     <form [formGroup]="registerForm" class="form-container">
@@ -57,12 +54,48 @@ export default class RegisterComponent {
     // await this.ts.newUser(user);
     this.ts.newUser(user).subscribe({
       next: (response) => {
-        console.log('User ajouté avec succès:', user);
+        // console.log('User ajouté avec succès:', user);
         console.log('Message : ', response.message);
-        console.log('UserId : ', response.userId);
+        // console.log('UserId : ', response.userId);
+        // alert('Inscription réussie ! Vous pouvez maintenant vous connecter.');
+        //this.router.navigateByUrl('/login');
+        Swal.fire({
+          icon: 'success',
+          title: 'Félicitations 🎉',
+          html: `<p>Votre compte a été créé avec succès.</p><p>Vous serez redirigé sous peu.</p>`,
+          confirmButtonText: '<i class="fa fa-thumbs-up"></i> Super !',
+          confirmButtonColor: '#4caf50',
+          timer: 3000,
+          timerProgressBar: true,
+          willClose: () => {
+            this.router.navigateByUrl('/login');
+          }
+      });
+      },
+      error: (error) => {
+        console.error('Erreur lors de l\'inscription :', error);
+        if (error.status === 400) {
+          // alert('L\'email est déjà utilisé.');
+          Swal.fire({
+            icon: 'error',
+            title: 'Erreur',
+            // text: 'L\'email est déjà utilisé.',
+            html: `<p>L\'email est déjà utilisé.</p>`,
+            confirmButtonText: 'Réessayer',
+            confirmButtonColor: '#4caf50',
+          });
+        } else {
+          // alert('Une erreur est survenue. Veuillez réessayer.');
+          Swal.fire({
+            icon: 'error',
+            title: 'Erreur',
+            text: 'Une erreur est survenue. Veuillez réessayer.',
+            confirmButtonText: 'Réessayer'
+          });
+        }
       }
-    })
-    this.router.navigateByUrl('/todos');
+    });
+    // this.router.navigateByUrl('/todos');
 
   }
 }

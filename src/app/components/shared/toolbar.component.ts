@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ThemeService } from '../../core/services/theme.service';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -123,9 +124,11 @@ export class ToolbarComponent {
   @Input() isLoginBtnShown!: boolean;
   @Input() isRegisterBtnShown!: boolean;
   @Input() isLogoutBtnShown!: boolean;
+  private as = inject(AuthService)
 
   firstEmailLetter = localStorage.getItem('email');
-  logout = () => localStorage.removeItem('email');
+  // logout = () => localStorage.removeItem('email');
+  logout = () => this.as.logout();
 
   constructor(private themeService: ThemeService) {}
 
