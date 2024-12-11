@@ -80,55 +80,7 @@ import { BehaviorSubject, combineLatest } from 'rxjs';
       }
     }
 
-    // Style des nouveaux boutons
-    .actions-container {
-      display: flex;
-      justify-content: center; /* Centrer les boutons */
-      gap: 1rem; /* Espacement entre les boutons */
-      margin: 1.5rem 0; /* Marges pour espacer la section */
-    }
 
-    .actions-container button {
-      padding: 0.75rem 1.5rem; /* Taille confortable des boutons */
-      border: none; /* Supprimer les bordures par défaut */
-      border-radius: 8px; /* Coins arrondis pour un look moderne */
-      font-size: 1rem; /* Taille de police lisible */
-      font-weight: bold; /* Texte en gras pour une meilleure visibilité */
-      cursor: pointer; /* Curseur en forme de main pour indiquer qu'ils sont cliquables */
-      transition: background-color 0.3s ease, transform 0.2s ease; /* Animation douce sur hover */
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre subtile */
-    }
-
-    .actions-container button:hover {
-      background-color: #007BFF; /* Couleur d'accentuation au survol */
-      color: white; /* Texte blanc au survol */
-      transform: translateY(-3px); /* Légère élévation au survol */
-    }
-
-    .actions-container button:active {
-      transform: translateY(1px); /* Réduction visuelle au clic */
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ombre réduite */
-    }
-
-    .actions-container button:nth-child(1) {
-      background-color: #F8F9FA; /* Gris clair pour "Toutes les tâches" */
-      color: #212529; /* Texte sombre */
-    }
-
-    .actions-container button:nth-child(2) {
-      background-color: #28A745; /* Vert pour "Tâches faites" */
-      color: white; /* Texte blanc */
-    }
-
-    .actions-container button:nth-child(3) {
-      background-color: #DC3545; /* Rouge pour "Tâches non faites" */
-      color: white; /* Texte blanc */
-    }
-
-    .actions-container button:nth-child(4) {
-      background-color: #FFC107; /* Jaune pour "Trier par ordre croissant" */
-      color: #212529; /* Texte sombre */
-    }
   `
 })
 export class TodoListComponent implements OnInit {
