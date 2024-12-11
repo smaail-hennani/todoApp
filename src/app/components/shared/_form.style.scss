@@ -1,0 +1,228 @@
+/*
+.form-container {
+  width: max-content;
+  border-radius: 8px;
+  border: 1px grey solid;
+  padding: 2rem;
+  padding-top: 1rem;
+  margin: 2rem auto;
+}
+*/
+
+.form-container {
+  max-width: 400px;
+  justify-content: center; /* Centre horizontalement le contenu */
+  margin: 50px auto;
+  padding: 2rem;
+  padding-top: 1rem;
+  // background-color: #ffffff; /* Blanc */
+  border-radius: 10px;
+  border: 1px grey solid;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/*
+ .title,
+.sub-title {
+  margin: 0.2rem 0;
+  font-weight: normal;
+}
+*/
+
+.title {
+  color: #1e3c72; /* Même bleu que le début du dégradé de la toolbar */
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: normal;
+}
+
+.sub-title {
+  color: #2a5298; /* Même bleu que la fin du dégradé de la toolbar */
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: normal;
+}
+
+/*
+input {
+  width: calc(100% - 2rem);
+  padding: 0.5rem 1rem;
+  font-size: 1.2em;
+  margin-bottom: 1rem;
+}
+*/
+
+input[type="email"],
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+  font-size: 1.2em;
+
+
+  &:focus {
+    border-color: #1e3c72; /* Bleu de la toolbar */
+    outline: none;
+  }
+}
+
+.auth-btn, add-todo-btn{
+  width: 100%;
+  background-color: #e74c3c; /* Rouge des boutons de la toolbar */
+  color: white;
+  padding: 14px 20px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+  &:hover {
+    background-color: #c0392b; /* Rouge foncé */
+    transform: scale(1.02);
+  }
+  &:disabled {
+    background-color: #bdc3c7; /* Gris */
+    cursor: not-allowed;
+  }
+}
+
+p {
+  color: #e74c3c; /* Rouge pour les messages d'erreur */
+  text-align: center;
+  margin-top: 10px;
+}
+
+a {
+  color: #e74c3c; /* Rouge des boutons */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/*
+.auth-btn,
+add-todo-btn{
+  width: 100%;
+  display: block;
+  padding: 0.5rem;
+  font-size: 1.2em;
+  border-radius: 8px;
+}
+*/
+
+.active-btn {
+  color: white;
+  background: #e74c3c;
+  transition: transform 250ms;
+  &:hover {
+    background-color: #c0392b;
+    cursor: pointer;
+    transform: scale(1.02);
+  }
+}
+
+
+//////////////////////////////////* STYLE TOOLBAR-COMPONENT */////////////////////////////////////////
+///
+.theme-toggle {
+  position: fixed;
+  top: 80px;
+  left: 10px;
+  background: transparent;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out; /* Animation fluide */
+  z-index: 1000; /* Toujours visible */
+  &:hover{
+    transform: scale(1.1); /* Agrandissement au survol */
+  }
+
+  &:active {
+    transform: scale(0.9); /* Réduction subtile au clic */
+  }
+}
+
+.theme-toggle .icon {
+  animation: rotate 0.5s ease-in-out; /* Ajout d'une rotation au clic */
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+body.dark-theme .theme-toggle {
+  background: linear-gradient(135deg, #333, #555); /* Dégradé sombre */
+  color: #ffd700; /* Icône dorée en mode sombre */
+}
+// =======
+.toolbar {
+  height: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #1e3c72, #2a5298); /* Dégradé bleu */
+  padding: 0 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  position: sticky; /* Pour que la barre ne défile pas */
+  top: 0;
+}
+
+.app-title {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.toolbar-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  background: #e74c3c; /* Rouge */
+  color: white;
+  font-size: 1.1em;
+  border: none;
+  transition: background-color 250ms, transform 250ms;
+}
+
+.toolbar-btn:hover {
+  cursor: pointer;
+  background-color: #c0392b; /* Rouge foncé */
+  transform: scale(1.05);
+}
+
+.avatar-logout-btn {
+  display: flex;
+  align-items: center;
+}
+
+.avatar-logout-btn > * {
+  margin-left: 1rem;
+}
+
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f1c40f; /* Jaune */
+  color: #2c3e50; /* Bleu foncé */
+  font-size: 1.3em;
+  font-weight: bolder;
+}
