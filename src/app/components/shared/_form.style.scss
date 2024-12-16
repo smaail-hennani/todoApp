@@ -19,6 +19,24 @@
   border-radius: 10px;
   border: 1px grey solid;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  &.mobile-layout {
+    max-width: 300px;
+    padding: 1rem;
+    font-size: 0.9em;
+  }
+
+  &.tablet-layout {
+    max-width: 500px;
+    padding: 1.5rem;
+    font-size: 1em;
+  }
+
+  &.desktop-layout {
+    max-width: 600px;
+    padding: 2rem;
+    font-size: 1.2em;
+  }
 }
 
 /*
@@ -34,6 +52,18 @@
   text-align: center;
   margin-bottom: 10px;
   font-weight: normal;
+
+  &.mobile-layout {
+    font-size: 1.2em;
+  }
+
+  &.tablet-layout {
+    font-size: 1.5em;
+  }
+
+  &.desktop-layout {
+    font-size: 1.8em;
+  }
 }
 
 .sub-title {
@@ -41,6 +71,18 @@
   text-align: center;
   margin-bottom: 20px;
   font-weight: normal;
+
+  &.mobile-layout {
+    font-size: 1em;
+  }
+
+  &.tablet-layout {
+    font-size: 1.2em;
+  }
+
+  &.desktop-layout {
+    font-size: 1.4em;
+  }
 }
 
 /*
@@ -69,6 +111,19 @@ input[type="password"] {
     border-color: #1e3c72; /* Bleu de la toolbar */
     outline: none;
   }
+
+  &.mobile-layout {
+    font-size: 0.9em;
+    padding: 10px 15px;
+  }
+
+  &.tablet-layout {
+    font-size: 1.1em;
+  }
+
+  &.desktop-layout {
+    font-size: 1.2em;
+  }
 }
 
 .auth-btn, add-todo-btn{
@@ -90,18 +145,57 @@ input[type="password"] {
     background-color: #bdc3c7; /* Gris */
     cursor: not-allowed;
   }
+
+  &.mobile-layout {
+    font-size: 0.9em;
+    padding: 12px 18px;
+  }
+
+  &.tablet-layout {
+    font-size: 1em;
+    padding: 14px 20px;
+  }
+
+  &.desktop-layout {
+    font-size: 1.2em;
+    padding: 16px 22px;
+  }
 }
 
 p {
   color: #e74c3c; /* Rouge pour les messages d'erreur */
   text-align: center;
   margin-top: 10px;
+
+  &.mobile-layout {
+    font-size: 0.8em;
+  }
+
+  &.tablet-layout {
+    font-size: 1em;
+  }
+
+  &.desktop-layout {
+    font-size: 1.1em;
+  }
 }
 
 a {
   color: #e74c3c; /* Rouge des boutons */
   text-decoration: none;
   font-weight: bold;
+
+  &.mobile-layout {
+    font-size: 0.8em;
+  }
+
+  &.tablet-layout {
+    font-size: 1em;
+  }
+
+  &.desktop-layout {
+    font-size: 1.1em;
+  }
 }
 
 a:hover {
@@ -127,6 +221,18 @@ add-todo-btn{
     background-color: #c0392b;
     cursor: pointer;
     transform: scale(1.02);
+  }
+
+  &.mobile-layout {
+    font-size: 0.9em;
+  }
+
+  &.tablet-layout {
+    font-size: 1.1em;
+  }
+
+  &.desktop-layout {
+    font-size: 1.2em;
   }
 }
 
