@@ -4,13 +4,14 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { TodoService } from '../../core/services/todo.service';
 import { Todo } from '../../core/models/todo.model';
 import { HttpClientModule } from '@angular/common/http';
+import { ResponsiveService } from '../../core/services/responsive.service';
 
 @Component({
   selector: 'app-add-todo',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
   template: `
-    <form class="form-container" [formGroup]="addTodoForm">
+    <form class="form-container2" [formGroup]="addTodoForm" [class]="layoutClass">
       <input type="text" placeholder="Titre" formControlName="title">
       <input type="text" placeholder="Description" formControlName="description">
       <button
@@ -25,7 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
   `,
   styles: `
 
-    .form-container{
+    .form-container {
       width: max-content;
       border-radius: 8px;
       margin: 2rem auto;
@@ -60,11 +61,24 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class AddTodoComponent {
   private ts = inject(TodoService);
+  private responsiveService = inject(ResponsiveService);
 
   addTodoForm = new FormGroup({
     title: new FormControl('', Validators.required),
     description: new FormControl('')
   });
+
+  get layoutClass() {
+    if (this.responsiveService.isMobile) {
+      console.log('Is Mobile: ', this.responsiveService.isMobile);
+      return 'mobile-layout';
+    }
+    if (this.responsiveService.isTablet) {
+      console.log('Is Tablet: ', this.responsiveService.isTablet);
+      return 'tablet-layout';
+    }
+    return 'form-container2';
+  }
 
   onSubmit(){
     const todo :Todo = {

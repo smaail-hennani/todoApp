@@ -7,6 +7,7 @@ import { TodoService } from '../../core/services/todo.service';
 import { User } from '../../core/models/user.model';
 import { HttpClientModule } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { ResponsiveService } from '../../core/services/responsive.service';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,7 @@ import Swal from 'sweetalert2';
   imports: [CommonModule, ToolbarComponent, ReactiveFormsModule, RouterModule, HttpClientModule],
   template: `
     <app-toolbar [isLoginBtnShown]="true"></app-toolbar>
-    <form [formGroup]="registerForm" class="form-container">
+    <form [formGroup]="registerForm" class="form-container" [class]="layoutClass">
       <h2 class="title">Enregistrez-vous</h2>
       <h3 class="sub-title">
         Veuillez entrer votre email et mot de passe
@@ -40,10 +41,24 @@ import Swal from 'sweetalert2';
 export default class RegisterComponent {
   private ts = inject(TodoService);
   private router = inject(Router);
+  private responsiveService = inject(ResponsiveService);
   registerForm = new FormGroup ({
     email:new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required])
   });
+
+  get layoutClass() {
+    if (this.responsiveService.isMobile) {
+      console.log('Is Mobile: ', this.responsiveService.isMobile);
+      return 'mobile-layout';
+    }
+    if (this.responsiveService.isTablet) {
+      console.log('Is Tablet: ', this.responsiveService.isTablet);
+      return 'tablet-layout';
+    }
+    console.log('Is Desktop: ', this.responsiveService.isDesktop);
+    return 'desktop-layout';
+  }
 
   async OnSubmit(){
     const user: User = {

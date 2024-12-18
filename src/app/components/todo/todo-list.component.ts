@@ -5,6 +5,7 @@ import { Todo } from '../../core/models/todo.model';
 import { HttpClientModule } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, combineLatest } from 'rxjs';
+import { ResponsiveService } from '../../core/services/responsive.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -14,7 +15,7 @@ import { BehaviorSubject, combineLatest } from 'rxjs';
     <!-- <div *ngFor="let user of users$ | async" class="user-todo-list">
       <h3>{{ user.email }}</h3> -->
       <!-- <div class="todo-card-container" *ngFor="let todo of todos$ | async"> -->
-      <div class="actions-container">
+      <div class="actions-container" [class]="layoutClass">
         <!-- Boutons de filtre -->
         <button (click)="filterTasks('all')">Toutes les tâches</button>
         <button (click)="filterTasks('done')">Tâches faites</button>
@@ -94,6 +95,19 @@ export class TodoListComponent implements OnInit {
   todos$ = this.ts.todos$;
   private filterSubject = new BehaviorSubject<'all' | 'done' | 'notDone'>('all');
   private sortSubject = new BehaviorSubject<boolean>(false);
+  private responsiveService = inject(ResponsiveService);
+
+  get layoutClass() {
+    if (this.responsiveService.isMobile) {
+      console.log('Is Mobile: ', this.responsiveService.isMobile);
+      return 'mobile-layout';
+    }
+    if (this.responsiveService.isTablet) {
+      console.log('Is Tablet: ', this.responsiveService.isTablet);
+      return 'tablet-layout';
+    }
+    return 'action-container';
+  }
 
   filteredTodos$ = combineLatest([this.todos$, this.filterSubject, this.sortSubject]).pipe(
     map(([todos, filter, sort]) => {

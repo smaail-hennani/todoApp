@@ -13,8 +13,8 @@
   max-width: 400px;
   justify-content: center; /* Centre horizontalement le contenu */
   margin: 50px auto;
-  padding: 2rem;
-  padding-top: 1rem;
+  padding: 1rem 2rem 2rem;
+  // padding-top: 1rem;
   // background-color: #ffffff; /* Blanc */
   border-radius: 10px;
   border: 1px grey solid;
@@ -23,7 +23,64 @@
   &.mobile-layout {
     max-width: 300px;
     padding: 1rem;
-    font-size: 0.9em;
+    font-size: 1.2em;
+
+    button, input {
+      flex: 1;
+      padding: .8rem;
+      font-size: 1rem;
+      border-radius: .5rem;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+  }
+
+  &.tablet-layout {
+    max-width: 500px;
+    padding: 1.5rem;
+    font-size: 1em;
+  }
+
+  &.desktop-layout {
+    max-width: 600px;
+    padding: 2rem;
+    font-size: 1.2em;
+  }
+}
+
+.form-container2 {
+  max-width: 400px;
+  // justify-content: center; /* Centre horizontalement le contenu */
+  margin: 50px auto;
+  padding: 1rem 2rem 2rem;
+  // padding-top: 1rem;
+  // background-color: #ffffff; /* Blanc */
+  border-radius: 10px;
+  border: 1px grey solid;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  &.mobile-layout {
+    padding: 1.2rem;
+    max-width: 300px;
+    display: flex;
+    gap: .3rem;
+    margin-bottom: 1px;
+
+    input {
+      flex: 2;
+      min-width: 0;
+    }
+
+    input[type=email], input[type=text], input[type=password] {
+      font-size: .9em;
+      padding: 10px 15px;
+    }
+
+    button {
+      margin: 8px 0 8px 4px;
+      flex: 1.5;
+      padding: .6rem 1rem
+    }
   }
 
   &.tablet-layout {
@@ -342,6 +399,19 @@ body.dark-theme .theme-toggle {
   justify-content: center; /* Centrer les boutons */
   gap: 1rem; /* Espacement entre les boutons */
   margin: 1.5rem 0; /* Marges pour espacer la section */
+
+  &.mobile-layout {
+    padding-left: 5rem;
+    padding-right: 5rem;
+    font-size: .9rem;
+    gap: .3rem;
+
+    button {
+      padding: .6rem;
+      font-size: 1rem;
+      border-radius: .5rem;
+    }
+  }
 }
 
 .actions-container button {
