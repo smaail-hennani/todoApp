@@ -26,14 +26,23 @@ import { ResponsiveService } from '../../core/services/responsive.service';
   `,
   styles: `
 
-    .form-container {
+    .form-container2 {
       width: max-content;
+      justify-content: center;
       border-radius: 8px;
       margin: 2rem auto;
       display: flex;
       padding: 0;
       border: none;
       box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
+
+      &.mobile-layout {
+        max-width: 300px;
+        padding: 1rem;
+        font-size: 1.2em;
+        margin: 50px auto;
+        border: 1px grey solid;
+      }
 
       & > * {
         margin: 0 0.5rem;
