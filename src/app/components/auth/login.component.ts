@@ -3,31 +3,57 @@ import { ToolbarComponent } from '../shared/toolbar.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { TodoService } from '../../core/services/todo.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ResponsiveService } from '../../core/services/responsive.service';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ToolbarComponent, ReactiveFormsModule, RouterModule, HttpClientModule],
+  imports: [CommonModule,
+    ToolbarComponent,
+    ReactiveFormsModule,
+    RouterModule,
+    HttpClientModule
+  ],
   template: `
-    <app-toolbar [isRegisterBtnShown]="true" [isLoginBtnShown]="false" [isLogoutBtnShown]="false"></app-toolbar>
-    <form class="form-container" [formGroup]="loginForm" [class]="layoutClass">
-      <h2 class="title" [class]="layoutClass">Connectez-vous à Rikudo</h2>
+    <app-toolbar
+      [isRegisterBtnShown]="true"
+      [isLoginBtnShown]="false"
+      [isLogoutBtnShown]="false"
+    ></app-toolbar>
+    <form
+      class="form-container"
+      [formGroup]="loginForm"
+      [class]="layoutClass"
+      (ngSubmit)="onSubmit()"
+    >
+      <h2 class="title" [class]="layoutClass">Connectez-vous</h2>
       <h3 class="sub-title" [class]="layoutClass">
         Veuillez entrer votre email
         <a routerLink="/register" [class]="layoutClass">S'inscrire</a>
-      </h3><br>
-      <input type="email" placeholder="Email" formControlName="email" [class]="layoutClass">
-      <input type="password" placeholder="Mot de passe" formControlName="password" [class]="layoutClass">
+      </h3>
+      <br>
+      <input
+        type="email"
+        placeholder="Email"
+        formControlName="email"
+        [class]="layoutClass"
+      >
+      <input
+        type="password"
+        placeholder="Mot de passe"
+        formControlName="password"
+        [class]="layoutClass"
+      >
       <p *ngIf="showError" [class]="layoutClass">{{ errorMsg }}</p>
       <button
+        type="submit"
+        id="login-button"
         class="auth-btn"
         [class]="layoutClass"
         [ngClass]="{'active-btn' : !loginForm.invalid }"
         [disabled]="loginForm.invalid"
-        (click)="onSubmit()"
       >
         Connexion
       </button>
@@ -37,10 +63,15 @@ import { ResponsiveService } from '../../core/services/responsive.service';
 })
 export default class LoginComponent {
   showError = false;
-  errorMsg = "Email ou mot de passe incorrect, veuillez vous inscrire";
-  private ts = inject(TodoService);
+  errorMsg = 'Email ou mot de passe incorrect, veuillez vous inscrire';
+  private authService = inject(AuthService);
   private router = inject(Router);
   private responsiveService = inject(ResponsiveService);
+
+  loginForm = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required])
+  });
 
   get layoutClass() {
     if (this.responsiveService.isMobile) {
@@ -55,19 +86,16 @@ export default class LoginComponent {
     return 'desktop-layout';
   }
 
-  loginForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required])
-  });
+  onSubmit() {
+    if (this.loginForm.invalid) {
+      return; // Ne fait rien si le formulaire est invalide
+    }
 
-  async onSubmit() {
     const email = this.loginForm.value.email!;
     const password = this.loginForm.value.password!;
-    this.ts.loggIn(email, password).subscribe({
-      //next: (user) => {
+    this.authService.login(email, password).subscribe({
       next: (response) => {
-        // if (user?.email === email && user.password === password) {
-        const token = response.token; //
+        const token = response.token;
         if (token) {
           localStorage.setItem('token', token);
           localStorage.setItem('email', email);

@@ -12,13 +12,14 @@ import { JWT_OPTIONS, JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 export function jwtOptionsFactory() {
   return {
     tokenGetter: () => localStorage.getItem('token'),
-    allowedDomains: ['localhost:4200', 'https://backend.osc-fr1.scalingo.io/', 'localhost:4000'], // Remplacez par votre domaine d'API
-    disallowedRoutes: ['localhost:4200/login', 'localhost:4200/register' ], // Routes à ignorer
+    allowedDomains: ['localhost:4200', 'https://backend.osc-fr1.scalingo.io/', 'localhost:4000'],
+    disallowedRoutes: ['localhost:4200/login', 'localhost:4200/register' ],
   };
 }
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes),
+  providers: [
+    provideRouter(routes),
     provideClientHydration(),
     provideHttpClient(withInterceptors([tokenInterceptor])),
     provideHttpClient(withFetch()),
@@ -27,6 +28,6 @@ export const appConfig: ApplicationConfig = {
       provide: JWT_OPTIONS,
       useFactory: jwtOptionsFactory,
     },
-    importProvidersFrom(HttpClientModule), // Import global de HttpClientModule
+    importProvidersFrom(HttpClientModule),
   ]
 };

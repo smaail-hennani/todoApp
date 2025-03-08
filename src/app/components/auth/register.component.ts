@@ -15,21 +15,21 @@ import { ResponsiveService } from '../../core/services/responsive.service';
   imports: [CommonModule, ToolbarComponent, ReactiveFormsModule, RouterModule, HttpClientModule],
   template: `
     <app-toolbar [isLoginBtnShown]="true"></app-toolbar>
-    <form [formGroup]="registerForm" class="form-container" [class]="layoutClass">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="form-container" [class]="layoutClass">
       <h2 class="title">Enregistrez-vous</h2>
       <h3 class="sub-title">
         Veuillez entrer votre email et mot de passe
         <br>
         <a routerLink="/login">Se connecter</a>
       </h3>
-      <br />
+      <br/>
       <input placeholder="Email" type="email" formControlName="email" />
       <input placeholder="Mot de passe" type="password" formControlName="password" />
       <button
         [ngClass]="{ 'active-btn' : !registerForm.invalid }"
         class="auth-btn"
         [disabled]="registerForm.invalid"
-        (click)="OnSubmit()"
+        type="submit"
       >
       S'inscrire
       </button>
@@ -60,20 +60,13 @@ export default class RegisterComponent {
     return 'desktop-layout';
   }
 
-  async OnSubmit(){
+  onSubmit(){
     const user: User = {
       email: this.registerForm.value.email!,
       password: this.registerForm.value.password!
     }
-    localStorage.setItem('email', user.email);
-    // await this.ts.newUser(user);
     this.ts.newUser(user).subscribe({
       next: (response) => {
-        // console.log('User ajouté avec succès:', user);
-        console.log('Message : ', response.message);
-        // console.log('UserId : ', response.userId);
-        // alert('Inscription réussie ! Vous pouvez maintenant vous connecter.');
-        //this.router.navigateByUrl('/login');
         Swal.fire({
           icon: 'success',
           title: 'Félicitations 🎉',
@@ -85,22 +78,18 @@ export default class RegisterComponent {
           willClose: () => {
             this.router.navigateByUrl('/login');
           }
-      });
+        });
       },
       error: (error) => {
-        console.error('Erreur lors de l\'inscription :', error);
         if (error.status === 400) {
-          // alert('L\'email est déjà utilisé.');
           Swal.fire({
             icon: 'error',
             title: 'Erreur',
-            // text: 'L\'email est déjà utilisé.',
             html: `<p>L\'email est déjà utilisé.</p>`,
             confirmButtonText: 'Réessayer',
             confirmButtonColor: '#4caf50',
           });
         } else {
-          // alert('Une erreur est survenue. Veuillez réessayer.');
           Swal.fire({
             icon: 'error',
             title: 'Erreur',
@@ -110,7 +99,5 @@ export default class RegisterComponent {
         }
       }
     });
-    // this.router.navigateByUrl('/todos');
-
   }
 }

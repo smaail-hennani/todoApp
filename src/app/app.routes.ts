@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { authGuard } from './core/guards/auth.guard';
 import { noAuthGuard } from './core/guards/no-auth.guard';
 
@@ -19,7 +18,6 @@ export const routes: Routes = [
   {
     path: 'todos',
     title: 'Todos | TodoApp',
-    // canActivate: [()=> inject(TodoService).isLoggedIn()],
     canActivate: [authGuard],
     loadComponent: () => import('./components/todo/todo.component'),
   },

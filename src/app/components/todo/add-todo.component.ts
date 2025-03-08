@@ -11,21 +11,25 @@ import { ResponsiveService } from '../../core/services/responsive.service';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
   template: `
-    <form class="form-container2" [formGroup]="addTodoForm" [class]="layoutClass">
+    <form
+      class="form-container2"
+      [formGroup]="addTodoForm"
+      (ngSubmit)="onSubmit()"
+      [class]="layoutClass"
+    >
       <input type="text" placeholder="Titre" formControlName="title">
       <input type="text" placeholder="Description" formControlName="description">
       <button
         class="auth-btn"
         [ngClass]="{'active-btn' : !addTodoForm.invalid }"
         [disabled]="addTodoForm.invalid"
-        (click)="onSubmit()"
+        type="submit"
       >
         Ajouter
       </button>
     </form>
   `,
   styles: `
-
     .form-container2 {
       width: max-content;
       justify-content: center;
@@ -43,29 +47,18 @@ import { ResponsiveService } from '../../core/services/responsive.service';
         margin: 50px auto;
         border: 1px grey solid;
       }
-
       & > * {
         margin: 0 0.5rem;
       }
     }
-
     input[type="text"] {
-    width: auto; /* La largeur s'adapte au contenu */
-    // min-width: 20ch; /* Largeur minimale pour une bonne lisibilité */
-    // max-width: 100%; /* Empêche un débordement */
+      width: auto;
     }
-
     .auth-btn {
-    width: 100%; /* Largeur du bouton */
-    padding: 14px 20px;
-    border-radius: 8px;
-  }
-
-
-
-
-
-
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 8px;
+    }
   `
 })
 export class AddTodoComponent {
@@ -79,11 +72,9 @@ export class AddTodoComponent {
 
   get layoutClass() {
     if (this.responsiveService.isMobile) {
-      console.log('Is Mobile: ', this.responsiveService.isMobile);
       return 'mobile-layout';
     }
     if (this.responsiveService.isTablet) {
-      console.log('Is Tablet: ', this.responsiveService.isTablet);
       return 'tablet-layout';
     }
     return 'form-container2';
@@ -99,20 +90,14 @@ export class AddTodoComponent {
 
     this.ts.newTodo(todo).subscribe({
       next: (response) => {
-        console.log('Todo ajouté avec succès:', todo);
         const newTodo: Todo = {
           ...todo,
           id: response.todoId // Ajout de l'id retourné par le backend
         } as Todo;
-        console.log('Id newtodo : ', newTodo.id);
         this.ts.addLocal(newTodo); // Ajouter localement le todo
-        this.ts.todos$.subscribe({
-          next : todo => console.log("addlocal : ", newTodo),
-        })
         this.addTodoForm.reset();
       },
       error: (err) => console.error('Erreur lors de l\'ajout du todo:', err),
     });
-    // this.addTodoForm.reset();
   }
 }

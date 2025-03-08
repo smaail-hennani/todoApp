@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, Input } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ThemeService } from '../../core/services/theme.service';
 import { AuthService } from '../../core/services/auth.service';
 
@@ -9,18 +9,32 @@ import { AuthService } from '../../core/services/auth.service';
   standalone: true,
   imports: [CommonModule, RouterModule],
   template: `
-    <nav class="toolbar">
-      <a class="app-title" routerLink='/'>TodoApp</a>
+    <nav class='toolbar'>
+      <a class='app-title' routerLink='/'>TodoApp</a>
       <button (click)='toggleTheme()' class='theme-toggle'>
-        <span class="icon">🌙</span>
+        <span class='icon'>🌙</span>
       </button>
-      <button class="toolbar-btn" routerLink="/register" *ngIf="isRegisterBtnShown">S'inscrire</button>
-      <button class="toolbar-btn" routerLink="/login" *ngIf="isLoginBtnShown">Se connecter</button>
-      <div class="avatar-logout-btn" *ngIf="isLogoutBtnShown">
-        <div class="user-avatar">
+
+      <button
+        class='toolbar-btn'
+        routerLink='/register'
+        *ngIf='isRegisterBtnShown'
+      >
+        S'inscrire
+      </button>
+
+      <button class='toolbar-btn'
+        routerLink='/login'
+        *ngIf='isLoginBtnShown'
+      >
+        Se connecter
+      </button>
+
+      <div class='avatar-logout-btn' *ngIf='isLogoutBtnShown'>
+        <div class='user-avatar'>
           {{ firstEmailLetter![0] | uppercase }}
         </div>
-        <button class="toolbar-btn" routerLink="/login" (click)="logout()">Se déconnecter</button>
+        <button class='toolbar-btn' (click)='logout()'>Se déconnecter</button>
       </div>
     </nav>
   `,
@@ -33,19 +47,19 @@ import { AuthService } from '../../core/services/auth.service';
       border: none;
       font-size: 1rem;
       cursor: pointer;
-      transition: all 0.3s ease-in-out; /* Animation fluide */
-      z-index: 1000; /* Toujours visible */
+      transition: all 0.3s ease-in-out;
+      z-index: 1000;
       &:hover{
-        transform: scale(1.1); /* Agrandissement au survol */
+        transform: scale(1.1);
       }
 
       &:active {
-        transform: scale(0.9); /* Réduction subtile au clic */
+        transform: scale(0.9);
       }
     }
 
     .theme-toggle .icon {
-      animation: rotate 0.5s ease-in-out; /* Ajout d'une rotation au clic */
+      animation: rotate 0.5s ease-in-out;
     }
 
     @keyframes rotate {
@@ -58,19 +72,19 @@ import { AuthService } from '../../core/services/auth.service';
     }
 
     body.dark-theme .theme-toggle {
-      background: linear-gradient(135deg, #333, #555); /* Dégradé sombre */
-      color: #ffd700; /* Icône dorée en mode sombre */
+      background: linear-gradient(135deg, #333, #555);
+      color: #ffd700;
     }
-// =======
+
     .toolbar {
       height: 4rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: linear-gradient(90deg, #1e3c72, #2a5298); /* Dégradé bleu */
+      background: linear-gradient(90deg, #1e3c72, #2a5298);
       padding: 0 20px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      position: sticky; /* Pour que la barre ne défile pas */
+      position: sticky;
       top: 0;
     }
 
@@ -84,7 +98,7 @@ import { AuthService } from '../../core/services/auth.service';
     .toolbar-btn {
       padding: 0.5rem 1rem;
       border-radius: 8px;
-      background: #e74c3c; /* Rouge */
+      background: #e74c3c;
       color: white;
       font-size: 1.1em;
       border: none;
@@ -93,7 +107,7 @@ import { AuthService } from '../../core/services/auth.service';
 
     .toolbar-btn:hover {
       cursor: pointer;
-      background-color: #c0392b; /* Rouge foncé */
+      background-color: #c0392b;
       transform: scale(1.05);
     }
 
@@ -113,8 +127,8 @@ import { AuthService } from '../../core/services/auth.service';
       display: flex;
       justify-content: center;
       align-items: center;
-      background: #f1c40f; /* Jaune */
-      color: #2c3e50; /* Bleu foncé */
+      background: #f1c40f;
+      color: #2c3e50;
       font-size: 1.3em;
       font-weight: bolder;
     }
@@ -124,11 +138,15 @@ export class ToolbarComponent {
   @Input() isLoginBtnShown!: boolean;
   @Input() isRegisterBtnShown!: boolean;
   @Input() isLogoutBtnShown!: boolean;
-  private as = inject(AuthService)
+  private as = inject(AuthService);
+  private router = inject(Router);
 
   firstEmailLetter = localStorage.getItem('email');
-  // logout = () => localStorage.removeItem('email');
-  logout = () => this.as.logout();
+
+  logout() {
+    this.as.logout();
+    this.router.navigate(['/login']);
+  }
 
   constructor(private themeService: ThemeService) {}
 

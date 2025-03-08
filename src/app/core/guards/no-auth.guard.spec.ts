@@ -1,18 +1,18 @@
-import { TestBed } from '@angular/core/testing';
-import { CanActivateFn, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { authGuard } from './auth.guard';
-import { AuthService } from '../services/auth.service';
+import { TestBed } from "@angular/core/testing";
+import { CanActivateFn, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from "@angular/router";
 
-describe('authGuard', () => {
+import { noAuthGuard } from "./no-auth.guard";
+import { AuthService } from "../services/auth.service";
+
+describe('no-authGuard', () => {
   let authServiceSpy: jasmine.SpyObj<AuthService>;
   let routerSpy: jasmine.SpyObj<Router>;
 
-  // On réutilise la fonction donnée dans votre exemple
   const executeGuard: CanActivateFn = (...guardParameters) =>
-    TestBed.runInInjectionContext(() => authGuard(...guardParameters));
+    TestBed.runInInjectionContext(() => noAuthGuard(... guardParameters));
 
   beforeEach(() => {
-    // Création de spies
+    // Création des spies
     const authSpy = jasmine.createSpyObj('AuthService', ['isAuthenticated']);
     const routerNavigateSpy = jasmine.createSpyObj('Router', ['navigate']);
 
@@ -33,27 +33,21 @@ describe('authGuard', () => {
     expect(executeGuard).toBeTruthy();
   });
 
-  it('devrait retourner true si l’utilisateur est authentifié', () => {
-    // On simule l’utilisateur authentifié
+  it('should return false and redirect to /todos if the user is authenticated', () => {
     authServiceSpy.isAuthenticated.and.returnValue(true);
 
-    // On exécute le guard
     const canActivate = executeGuard({} as ActivatedRouteSnapshot, {} as RouterStateSnapshot);
 
-    // Vérification : true et aucune navigation
-    expect(canActivate).toBeTrue();
-    expect(routerSpy.navigate).not.toHaveBeenCalled();
+    expect(canActivate).toBeFalse();
+    expect(routerSpy.navigate).toHaveBeenCalledWith(['/todos']);
   });
 
-  it('devrait retourner false et naviguer vers /login si l’utilisateur n’est pas authentifié', () => {
-    // On simule l’utilisateur non authentifié
+  it('should return true if the user is not authenticated', () => {
     authServiceSpy.isAuthenticated.and.returnValue(false);
 
-    // On exécute le guard
     const canActivate = executeGuard({} as ActivatedRouteSnapshot, {} as RouterStateSnapshot);
 
-    // Vérification : false et navigation vers /login
-    expect(canActivate).toBeFalse();
-    expect(routerSpy.navigate).toHaveBeenCalledWith(['/login']);
+    expect(canActivate).toBeTrue();
+    expect(routerSpy.navigate).not.toHaveBeenCalled();
   });
 });
