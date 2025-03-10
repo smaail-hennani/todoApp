@@ -54,7 +54,9 @@ ng test
 ---
 
 ## 📌 Capture d'écran
-Aperçu du formulaire de connexion de l'application TodoApp :
+
+L'icône 🌙 en haut à gauche permet de basculer vers le mode sombre :
+
 ![Connexion TodoApp](src/assets/interface_todoApp.jpg)
 
 ## 📌 Contact
