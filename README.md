@@ -54,8 +54,8 @@ ng test
 ---
 
 ## 📌 Capture d'écran
-
-![Interface de connexion de TodoApp](src/assets/interface_todoApp.jpg)
+Aperçu du formulaire de connexion de l'application TodoApp :
+![Connexion TodoApp](src/assets/interface_todoApp.jpg)
 
 ## 📌 Contact
 ** Smaail ** – Développeur Angular & Node.js Fullstack
