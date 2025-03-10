@@ -1,27 +1,74 @@
-# TestApp
+# 📌 TodoApp – Gestionnaire de tâches moderne
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
+TodoApp est une application web moderne et intuitive pour gérer facilement vos tâches quotidiennes. Développée avec Angular pour offrir une expérience fluide et responsive sur tous les appareils.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 📌 Fonctionnalités clés
 
-## Code scaffolding
+- ** Authentification sécurisée (JWT) **
+- ** CRUD complet des tâches (ajout, modification, suppression) **
+- ** Interface responsive (mobile, tablette, desktop)** 
+- ** Routes protégées avec Angular Guards ** 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## 📌 Technologies utilisées
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- ** Angular 17 ** (Standalone Components)
+- ** Reactive Forms ** 
+- ** RxJS
+- ** JWT Authentication ** 
+- ** Jasmine & Karma ** pour tests unitaires
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 📌 Démo en ligne
 
-## Running end-to-end tests
+[Accédez à l'application sur GitHub Pages](https://gylgamesh34.github.io/todoApp/login)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+---
 
-## Further help
+## 📌 Installation rapide
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+git clone https://github.com/gylgamesh34/todoApp.git
+cd todoApp
+npm install
+ng serve
+```
+
+Accédez ensuite à l'application à l'adresse suivante :
+```bash
+http://localhost:4200
+```
+
+---
+
+## 📌 Lancer les tests unitaires
+
+```bash
+ng test
+```
+
+---
+
+## 📌 Capture d'écran
+
+![Interface de connexion de TodoApp](src/assets/interface_todoApp.jpg)
+
+## 📌 Contact
+** Smaail ** – Développeur Angular & Node.js Fullstack
+- Email : smaail.hennani@gmail.com
+- LinkedIn : www.linkedin.com/in/smaail-hennani-3a0494117
+
+
+Accédez ensuite à l'application à l'adresse suivante :
+```bash
+http://localhost:4200
+```
+
+Merci pour votre visite !
+
+## 📌 Licence
+Ce projet est disponible sous licence MIT. Voir le fichier LICENSE pour plus d'informations.
