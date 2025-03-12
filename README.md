@@ -25,14 +25,14 @@ TodoApp est une application web moderne et intuitive pour gérer facilement vos 
 
 ## 📌 Démo en ligne
 
-[Accédez à l'application sur GitHub Pages](https://gylgamesh34.github.io/todoApp/login)
+[Accédez à l'application sur GitHub Pages](https://smaail-hennani.github.io/todoApp/login)
 
 ---
 
 ## 📌 Installation rapide
 
 ```bash
-git clone https://github.com/gylgamesh34/todoApp.git
+git clone https://github.com/smaail-hennani/todoApp.git
 cd todoApp
 npm install
 ng serve
