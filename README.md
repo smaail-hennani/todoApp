@@ -6,20 +6,20 @@ TodoApp est une application web moderne et intuitive pour gérer facilement vos 
 
 ## Fonctionnalités clés
 
-- ** Authentification sécurisée (JWT) **
-- ** CRUD complet des tâches (ajout, modification, suppression) **
-- ** Interface responsive (mobile, tablette, desktop)** 
-- ** Routes protégées avec Angular Guards ** 
+- Authentification sécurisée (JWT)
+- CRUD complet des tâches (ajout, modification, suppression)
+- Interface responsive (mobile, tablette, desktop)
+- Routes protégées avec Angular Guards
 
 ---
 
 ## Technologies utilisées
 
-- ** Angular 17 ** (Standalone Components)
-- ** Reactive Forms ** 
-- ** RxJS
-- ** JWT Authentication ** 
-- ** Jasmine & Karma ** pour tests unitaires
+- **Angular 17** (Standalone Components)
+- **Reactive Forms** 
+- **RxJS**
+- **JWT Authentication** 
+- **Jasmine & Karma** pour tests unitaires
 
 ---
 
@@ -57,11 +57,11 @@ L'icône 🌙 en haut à gauche permet de basculer vers le mode sombre :
 ![Connexion TodoApp](src/assets/interface_todoApp.jpg)
 
 ## Voir aussi
-- Backend de TodoSecure (API) :  
-[Github - Backend de TodoSecure](https://github.com/smaailhennani-cloud/TodoSecure-API)
+- **Backend associé (API Node.js) :**
+[API Backend sur Scalingo](https://todosecure-api.osc-fr1.scalingo.io) | [Code source backend](https://github.com/smaailhennani-cloud/TodoSecure-API)  
 
 ## Contact
-** Smaail ** – Développeur Angular & Node.js Fullstack
+**Smaail** – Développeur Angular & Node.js Fullstack
 - Email : smaail.hennani@gmail.com
 - LinkedIn : www.linkedin.com/in/smaail-hennani-3a0494117
 
