@@ -4,16 +4,16 @@ TodoApp est une application web moderne et intuitive pour gérer facilement vos 
 
 ---
 
-## 📌 Fonctionnalités clés
+## Fonctionnalités clés
 
-- ** Authentification sécurisée (JWT) **
+- ** Authentification sécurisée JSON Web Tokens (JWT) **
 - ** CRUD complet des tâches (ajout, modification, suppression) **
 - ** Interface responsive (mobile, tablette, desktop)** 
 - ** Routes protégées avec Angular Guards ** 
 
 ---
 
-## 📌 Technologies utilisées
+## Technologies utilisées
 
 - ** Angular 17 ** (Standalone Components)
 - ** Reactive Forms ** 
@@ -23,13 +23,13 @@ TodoApp est une application web moderne et intuitive pour gérer facilement vos 
 
 ---
 
-## 📌 Démo en ligne
+## Démo en ligne
 
 [Accédez à l'application sur GitHub Pages](https://smaail-hennani.github.io/todoApp/login)
 
 ---
 
-## 📌 Installation rapide
+## Installation rapide
 
 ```bash
 git clone https://github.com/smaail-hennani/todoApp.git
@@ -45,7 +45,7 @@ http://localhost:4200
 
 ---
 
-## 📌 Lancer les tests unitaires
+## Lancer les tests unitaires
 
 ```bash
 ng test
@@ -53,28 +53,25 @@ ng test
 
 ---
 
-## 📌 Capture d'écran
+## Capture d'écran
 
 L'icône 🌙 en haut à gauche permet de basculer vers le mode sombre :
 
 ![Connexion TodoApp](src/assets/interface_todoApp.jpg)
 
-## 📌 Voir aussi
+## Voir aussi
 - Backend de TodoSecure (API) :  
 [Github - Backend de TodoSecure](https://github.com/smaailhennani-cloud/TodoSecure-API)
 
-## 📌 Contact
+## Contact
 ** Smaail ** – Développeur Angular & Node.js Fullstack
 - Email : smaail.hennani@gmail.com
 - LinkedIn : www.linkedin.com/in/smaail-hennani-3a0494117
 
 
-Accédez ensuite à l'application à l'adresse suivante :
-```bash
-http://localhost:4200
-```
+Accédez ensuite à l'application à l'adresse suivante : [http://localhost:4200](http://localhost:4200)
 
 Merci pour votre visite !
 
-## 📌 Licence
+## Licence
 Ce projet est disponible sous licence MIT. Voir le fichier LICENSE pour plus d'informations.
