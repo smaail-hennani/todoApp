@@ -1,4 +1,4 @@
-# 📌 TodoApp – Gestionnaire de tâches moderne
+# TodoApp – Gestionnaire de tâches moderne
 
 TodoApp est une application web moderne et intuitive pour gérer facilement vos tâches quotidiennes. Développée avec Angular pour offrir une expérience fluide et responsive sur tous les appareils.
 
@@ -38,10 +38,7 @@ npm install
 ng serve
 ```
 
-Accédez ensuite à l'application à l'adresse suivante :
-```bash
-http://localhost:4200
-```
+Accédez ensuite à l'application à l'adresse suivante : [http://localhost:4200](http://localhost:4200)
 
 ---
 
