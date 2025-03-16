@@ -6,7 +6,7 @@ TodoApp est une application web moderne et intuitive pour gérer facilement vos 
 
 ## Fonctionnalités clés
 
-- ** Authentification sécurisée JSON Web Tokens (JWT) **
+- ** Authentification sécurisée (JWT) **
 - ** CRUD complet des tâches (ajout, modification, suppression) **
 - ** Interface responsive (mobile, tablette, desktop)** 
 - ** Routes protégées avec Angular Guards ** 
