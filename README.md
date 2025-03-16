@@ -57,7 +57,7 @@ L'icône 🌙 en haut à gauche permet de basculer vers le mode sombre :
 ![Connexion TodoApp](src/assets/interface_todoApp.jpg)
 
 ## Voir aussi
-- **Backend associé (API Node.js) :**
+- **Backend associé (API Node.js) :**  
 [API Backend sur Scalingo](https://todosecure-api.osc-fr1.scalingo.io) | [Code source backend](https://github.com/smaailhennani-cloud/TodoSecure-API)  
 
 ## Contact
