@@ -1,0 +1,19 @@
+{
+  "L": {
+    "TITLE": "Sign In",
+    "DESCRIPTION": "Please enter your email",
+    "SIGNUP": "Sign up",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "LOGIN_BUTTON": "Login"
+  },
+
+  "LOGIN": {
+    "TITLE": "Sign In",
+    "DESCRIPTION": "Please enter your email",
+    "REGISTER": "Sign up",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "LOGIN": "Login"
+  }
+}

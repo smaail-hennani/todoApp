@@ -1,0 +1,10 @@
+{
+  "LOGIN": {
+    "TITLE": "Connectez-vous",
+    "DESCRIPTION": "Veuillez entrer votre email",
+    "REGISTER": "S'inscrire",
+    "EMAIL": "Email",
+    "PASSWORD": "Mot de passe",
+    "LOGIN": "Connexion"
+  }
+}
