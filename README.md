@@ -58,7 +58,7 @@ L'icône 🌙 en haut à gauche permet de basculer vers le mode sombre :
 
 ## Voir aussi
 - **Backend associé (API Node.js) :**  
-[API Backend sur Scalingo](https://todosecure-api.osc-fr1.scalingo.io) | [Code source backend](https://github.com/smaailhennani-cloud/TodoSecure-API)  
+[API Backend sur Scalingo](https://todosecure.osc-fr1.scalingo.io) | [Code source backend](https://github.com/smaailhennani-cloud/TodoSecure-API)  
 
 ## Contact
 **Smaail** – Développeur Angular & Node.js Fullstack

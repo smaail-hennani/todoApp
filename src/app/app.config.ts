@@ -12,7 +12,7 @@ import { JWT_OPTIONS, JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 export function jwtOptionsFactory() {
   return {
     tokenGetter: () => localStorage.getItem('token'),
-    allowedDomains: ['localhost:4200', 'https://backend.osc-fr1.scalingo.io/', 'localhost:4000'],
+    allowedDomains: ['localhost:4200', 'https://todosecure.osc-fr1.scalingo.io', 'localhost:4000'],
     disallowedRoutes: ['localhost:4200/login', 'localhost:4200/register' ],
   };
 }
